@@ -32,6 +32,7 @@ type CartItem = Product & {
 };
 
 export default function PosClient({ products }: { products: Product[] }) {
+    const router = useRouter();
   const { t } = useTranslation();
   const [cart, setCart] = useState<CartItem[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -142,6 +143,7 @@ export default function PosClient({ products }: { products: Product[] }) {
       });
 
       const responseData = await res.json();
+      const txId = responseData.data?.id || responseData.id;
 
       if (res.ok) {
         alert(

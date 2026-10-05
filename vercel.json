@@ -1,14 +1,3 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": {
-    "backend-pos": {
-      "root": "backend-pos",
-      "framework": "vite"
-    },
-    "frontend-pos": {
-      "root": "frontend-pos",
-      "framework": "nextjs"
-    }
-  },
-  "rewrites": []
+  "framework": "nextjs"
 }
