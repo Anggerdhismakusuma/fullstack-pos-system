@@ -11,3 +11,15 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/checkout', [CheckoutController::class, 'store']);
 Route::apiResource('products', ProductController::class);
+
+Route::get('/reports/transactions', function () {
+    $transactions = Transaction::with('details.product', 'user')
+        ->latest()
+        ->take(10)
+        ->get();
+
+    return response()->json([
+        'status' => 'success',
+        'data' => $transactions
+    ]);
+});
