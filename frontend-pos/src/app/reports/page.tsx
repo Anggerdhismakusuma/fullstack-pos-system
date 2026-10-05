@@ -31,6 +31,7 @@ type Transaction = {
 export default function ReportsPage() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
 
   // Sinkronisasi tema saat halaman laporan dibuka
   useEffect(() => {
@@ -42,7 +43,7 @@ export default function ReportsPage() {
     }
 
     // Fetch data laporan dari backend Laravel secara client-side
-    fetch("http://127.0.0.1:8000/api/reports/transactions", { cache: "no-store" })
+    fetch(`${API_URL}/reports/transactions`, { cache: "no-store" })
       .then((res) => res.json())
       .then((json) => {
         setTransactions(json.data || []);

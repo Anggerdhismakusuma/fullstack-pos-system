@@ -52,6 +52,8 @@ export default function PosClient({ products }: { products: Product[] }) {
       product.sku.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
+
   const updateCartQty = (productId: number, delta: number) => {
     setCart((prevCart) => {
       return prevCart
@@ -130,7 +132,7 @@ export default function PosClient({ products }: { products: Product[] }) {
     };
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/checkout", {
+      const res = await fetch(`${API_URL}/checkout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
